@@ -18,62 +18,10 @@ typedef struct{
 
 
 typedef struct{
-    char nom[50];
+    char* nom;
     Entrainement* e;
 }Joueur;
 
-
-
-
-void ajout_athlete(){
-    Joueur ajoute;
-    // IL FAUT RAJOUTER 4 pour .txt et un pour 0/
-    int nbr_sportif;
-    char val='N';
-
-    FILE *athlete=fopen("athlete.txt","a");
-    if(athlete==NULL){
-        exit(1);
-    }
-
-    printf("Saisir le nombre d'athlete : ");
-    scanf("%d",&nbr_sportif);
-
-    fseek(athlete,0,2);  // deplace curseur
-    for(int i=0;i<nbr_sportif;i++){
-        val = 'N';
-        while(val == 'N'){
-            printf("Saisir le nom de l'athlete : ");
-            scanf("%s", ajoute.nom);
-            printf("Vous voulez bien ajouter l'athlete %s ? ('O' pour oui/ 'N' pour non)\n", ajoute.nom);
-            scanf(" %c", &val);
-
-            while(val!='O' && val !='N'){
-                printf("Saisie incorrect veuillez ressaissir la reponse : ");
-                scanf(" %c", &val);
-            }
-        }
-
-        sprintf(ajoute.nom,"%s.txt",ajoute.nom);
-        fprintf(athlete,"%s\n",ajoute.nom);
-
-        FILE *fich=fopen(ajoute.nom,"w");
-        if(fich==NULL){
-            exit(1);
-        }
-        fclose(fich);
-    }
-    fclose(athlete);
-}
-Entrainement constructeur(){
-    Entrainement e;
-    e.date.jour = rand()%31+1;
-    e.date.mois = rand()%12+1;
-    e.ep = rand()%5+1;
-    e.temps = rand()%50;
-
-    return e;
-}
 
 
 int nbLigne(FILE* f){
@@ -84,9 +32,18 @@ int nbLigne(FILE* f){
             nbr_ligne++;
         }
     }
-           
-
     return nbr_ligne;
+}
+
+int nbAthlete(FILE* f){
+    int taille=1;
+    char caractere;
+    while((caractere=fgetc(f))!=EOF){
+        if(caractere==' '){
+            taille++;
+        }
+    }
+    return taille;
 }
 
 
@@ -108,44 +65,47 @@ Entrainement* creationTabE(FILE* f, int nbLignes){
 }
 
 
-Joueur* creationTab() {
+Joueur* creationTab(){
     Joueur* tab = NULL;
-    FILE* f = fopen("athlete.txt", "r");
-    if (f == NULL) {
-        perror("Erreur d'ouverture du fichier athlete.txt");
+    FILE* f=fopen("athlete.txt","r+");
+    char* nom = malloc(sizeof(char) *5);
+    char* nom2 = malloc(sizeof(char) *50);
+    nom = ".txt";
+    
+    if(f == NULL){
         exit(1);
     }
-
-    int nbLignes = nbLigne(f);
-    if (nbLignes <= 0) {
-        fclose(f);
-        fprintf(stderr, "Le fichier athlete.txt est vide ou erreur de lecture.\n");
+    int taille = nbAthlete(f), taille2;
+    tab = malloc(sizeof(Joueur)*taille);
+    if(tab==NULL){
         exit(2);
     }
-
-    tab = malloc(sizeof(Joueur) * nbLignes);
-    if (tab == NULL) {
-        fclose(f);
-        perror("Erreur d'allocation mémoire");
-        exit(3);
-    }
+    FILE* fi = NULL;
 
     rewind(f);
-    for (int i = 0; i < nbLignes; i++) {
-        if (fgets(tab[i].nom, sizeof(tab[i].nom), f) != NULL) {
-            size_t len = strlen(tab[i].nom);
-            if (len > 0 && tab[i].nom[len - 1] == '\n') {
-                tab[i].nom[len - 1] = '\0';
-            }
-            printf("%s\n", tab[i].nom);
-        } else {
-            fprintf(stderr, "Erreur de lecture à la ligne %d\n", i + 1);
-            free(tab);
-            fclose(f);
-            exit(4);
+    
+
+    for(int i=0; i<taille; i++){
+        tab[i].nom = malloc(sizeof(char)* 50);
+        fscanf(f, "%s",tab[i].nom);
+        strcpy(nom2, tab[i].nom);
+        strcat(nom2, nom);
+        FILE* fi = fopen(nom2, "r");
+        if(fi == NULL){
+            printf("erreur");
+            exit(3);
         }
+        taille2 = nbLigne(fi);
+        tab[i].e = creationTabE(fi, taille2);
+
+        /*for(int j=0; j<taille2; j++){
+            printf("%d %d %d %d\n",tab[i].e[j].date.jour, tab[i].e[j].date.mois, tab[i].e[j].ep,tab[i].e[j].temps);
+        }
+        fclose(fi);*/
     }
 
+
+    
     fclose(f);
     return tab;
 }
@@ -210,6 +170,28 @@ void ajoutEntrainement(FILE* f, Entrainement* tab, int taille){
     tab[taille-1] = nouv;
 
     fprintf(f, "\n%d %d %d %d", nouv.date.jour, nouv.date.mois, nouv.ep, nouv.temps);
+}
+
+int verif1(char* nom){
+    char r2;
+    printf("Souhaitez vous activer le filtre <<%s>> ? (o/n)\n\nRéponse :", nom);
+    scanf(" %c", &r2);
+    printf("\033[H\033[2J");
+    if((r2=='o') || (r2=='O')){
+       return 1;
+    }
+}
+
+
+int verif2(char* nom, int val){
+    if(val==0){
+        printf("Saisissez une valeur correcte !\n");
+    }
+    else{
+        printf("Le filtre %s a bien été enlevé\n", nom);
+
+    }
+    return 0;
 }
 
 void historique(Joueur * tab, int taille1, int val1, int val2, int val3){
@@ -321,36 +303,14 @@ void historique(Joueur * tab, int taille1, int val1, int val2, int val3){
 }
 
 
-int verif1(char* nom){
-    char r2;
-    printf("Souhaitez vous activer le filtre <<%s>> ? (o/n)\n\nRéponse :", nom);
-    scanf(" %c", &r2);
-    printf("\033[H\033[2J");
-    if((r2=='o') || (r2=='O')){
-       return 1;
-    }
-}
-
-
-int verif2(char* nom, int val){
-    if(val==0){
-        printf("Saisissez une valeur correcte !\n");
-    }
-    else{
-        printf("Le filtre %s a bien été enlevé\n", nom);
-
-    }
-    return 0;
-}
-
-
 void menu(Joueur* tab){
+    printf("\033[H\033[2J");
     int n, taille1, taille2, val = 0, x, xathlete, xepreuve, xdate;
     FILE* f = fopen("athlete.txt", "r");
     if(f==NULL){
         exit(1);
     }
-    taille1 = nbLigne(f);
+    taille1 = nbAthlete(f);
     fclose(f);
     n=0;
     char nom[20], r='O', r2, r3;
@@ -488,12 +448,8 @@ void menu(Joueur* tab){
     }
 }
 
-
 int main(){
-    srand(time(NULL));
-    printf("bonjour");
     Joueur* tab = creationTab();
-    printf("bonjour");
     menu(tab);
     return 0;
 }
