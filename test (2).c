@@ -479,18 +479,18 @@ void menu(Joueur* tab){
 
 
         case 3:
-     printf("Quel athlète ?\n\nReponse: ");
+             printf("Quel athlète ?\n\nReponse: ");
             scanf(" %s", nom);
             while((type<1)||(type>5)){
-            printf("Quelle épreuve ?\n1: 100m\n 2: 400m\n 3: 5000m\n 4: Marathon\n 5: Relais\n\nReponse: ");
-            scanf(" %d", epreuve);
+                printf("Quelle épreuve ?\n1: 100m\n 2: 400m\n 3: 5000m\n 4: Marathon\n 5: Relais\n\nReponse: ");
+                scanf(" %d", epreuve);
             }
             //print les infos
             break;
 
 
         case 2 :
-             while((type<1)||(type>5)){
+            while((type<1)||(type>5)){
             printf("Quelle épreuve ?\n1: 100m\n 2: 400m\n 3: 5000m\n 4: Marathon\n 5: Relais\n\nReponse: ");
             scanf(" %d", epreuve);
             }
@@ -502,9 +502,9 @@ void menu(Joueur* tab){
         case 3 :
             printf("Quel athlète ?\n\nReponse : ");
             scanf(" %s", nom);
-             while((type<1)||(type>5)){
-            printf("Quelle épreuve ?\n1: 100m\n 2: 400m\n 3: 5000m\n 4: Marathon\n 5: Relais\n\nReponse: ");
-            scanf(" %d", epreuve);
+            while((type<1)||(type>5)){
+                printf("Quelle épreuve ?\n1: 100m\n 2: 400m\n 3: 5000m\n 4: Marathon\n 5: Relais\n\nReponse: ");
+                scanf(" %d", epreuve);
             }
             printf("Quelle est la premiere date ?\n\nReponse : ");
             scanf("%d", &date1);
