@@ -71,7 +71,7 @@ Joueur* creationTab(){
     char* nom = malloc(sizeof(char) *5);
     char* nom2 = malloc(sizeof(char) *50);
     nom = ".txt";
-    
+
     if(f == NULL){
         exit(1);
     }
@@ -83,7 +83,7 @@ Joueur* creationTab(){
     FILE* fi = NULL;
 
     rewind(f);
-    
+
 
     for(int i=0; i<taille; i++){
         tab[i].nom = malloc(sizeof(char)* 50);
@@ -105,7 +105,7 @@ Joueur* creationTab(){
     }
 
 
-    
+
     fclose(f);
     return tab;
 }
@@ -303,6 +303,73 @@ void historique(Joueur * tab, int taille1, int val1, int val2, int val3){
 }
 
 
+int* tabTemps(Entrainement* tab, int taille, int taille2, int ep){
+    int k = 0;
+    int* tabTmps = malloc(taille2 * sizeof(int));
+    if (tabTmps == NULL) {
+        printf("Erreur d'allocation de mémoire\n");
+        exit(1);
+    }
+    for(int i=0; i<taille; i++){
+        if(tab[i].ep == ep){
+            tabTmps[k] = tab[i].temps;
+            k++;
+        }
+    }
+    return tabTmps;
+}
+
+float moyenne(int* tab, int taille){
+    float som = 0;
+    for(int i=0;i<taille; i++){
+        som = som+tab[i];
+    }
+    float moy = som/taille;
+    return moy;
+}
+
+
+int partition(int* A, int debut, int fin) {
+    int inf, sup, tmp;
+    inf = debut + 1;
+    sup = fin;
+    while (inf <= sup) {
+        while (inf <= sup && A[sup] > A[debut]) {
+            sup--;
+        }
+        while (inf <= sup && A[inf] <= A[debut]) {
+            inf++;
+        }
+        if (inf < sup) {
+            tmp = A[sup];
+            A[sup] = A[inf];
+            A[inf] = tmp;
+            inf++;
+            sup--;
+        }
+    }
+    tmp = A[debut];
+    A[debut] = A[sup];
+    A[sup] = tmp;
+    return sup;
+}
+
+
+void triRapideRec(int* A, int debut, int fin){
+    int pivot;
+    if(debut < fin){
+        pivot = partition(A, debut, fin);
+        triRapideRec(A, debut, pivot-1);
+        triRapideRec(A, pivot+1, fin);
+    }
+}
+
+
+void triRapide(int* A, int n){
+    triRapideRec(A, 0, n-1);
+}
+
+
 void menu(Joueur* tab){
     printf("\033[H\033[2J");
     int n, taille1, taille2, val = 0, x, xathlete, xepreuve, xdate;
@@ -310,6 +377,7 @@ void menu(Joueur* tab){
     if(f==NULL){
         exit(1);
     }
+    FILE* f2 = NULL;
     taille1 = nbAthlete(f);
     fclose(f);
     n=0;
@@ -439,8 +507,72 @@ void menu(Joueur* tab){
 
 
         case 3:
+            int xresume = 0, xenvoie = 0, xprogre = 0;
+            while((r=='O') || (r=='o')){
+                x=0;
+                while((x<1) || (x>3)){
+                    printf("Que voulez savoir ?\n1: Résumer d'un athlète\n2: Qui envoier au JO\n3: La progression d'un atlète\n\nRéponse : ");
+                    scanf("%d", &x);
+                    printf("\033[H\033[2J");
+                }
 
+                switch (x){
+                    case 1:
+                        xresume = verif1("athlete");
+                        break;
+                    case 2:
+                        xenvoie = verif1("date");
+                        break;
+                    case 3:
+                        xprogre = verif1("epreuve");
+                        break;
+                    case 4:
+                        break;
+                }
+            printf("Quel athlète ?\n\nReponse: ");
+            scanf(" %s", nom);
+            int i = verifNom(taille1, nom, tab);
+            xepreuve = 0;
 
+            if(i != -1){
+                sprintf(nom,"%s.txt",nom);
+                f2 = fopen(nom, "r");
+                if(f2 == NULL){
+                    exit(1);
+                }
+
+                taille2 = nbLigne(f2);
+                while((xepreuve<1)||(xepreuve>5)){
+                    printf("\033[H\033[2J");
+                    printf("Quelle épreuve ?\n1: 100m\n 2: 400m\n 3: 5000m\n 4: Marathon\n 5: Relais\n\nReponse: ");
+                    scanf("%d", &xepreuve);
+                }
+                int taille3 = 0;
+                for(int j=0; j<taille2; j++){
+                    if(tab[i].e[j].ep == xepreuve){
+                        taille3++;
+                    }
+                }
+                if(taille3 != 0){
+                    int* tabTmps = malloc(taille3 * sizeof(int));
+                    if (tabTmps == NULL) {
+                        printf("Erreur d'allocation de mémoire\n");
+                        exit(1);
+                    }
+                    tabTmps = tabTemps(tab[i].e, taille2, taille3, xepreuve);
+                    float moy = moyenne(tabTmps, taille3);
+                    triRapide(tabTmps, taille3);
+                    printf("\033[H\033[2J");
+                    printf("%s\n", tab[i].nom);
+                    printf("meilleur temps : %d\n", tabTmps[0]);
+                    printf("pire temps : %d\n", tabTmps[taille3-1]);
+                    printf("temps moyen : %fs\n", moy);
+                }
+            }else{
+                printf("verifier l'orthographe\n");
+            }
+
+            break;
 
 
         default:
