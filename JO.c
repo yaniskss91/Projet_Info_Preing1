@@ -511,7 +511,7 @@ void menu(Joueur* tab){
             while((r=='O') || (r=='o')){
                 x=0;
                 while((x<1) || (x>3)){
-                    printf("Que voulez savoir ?\n1: Résumer d'un athlète\n2: Qui envoier au JO\n3: La progression d'un atlète\n\nRéponse : ");
+                    printf("Que voulez savoir ?\n1: Résumé d'un athlète\n2: Qui envoyer au JO\n3: La progression d'un atlhète\n\nRéponse : ");
                     scanf("%d", &x);
                     printf("\033[H\033[2J");
                 }
