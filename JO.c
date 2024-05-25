@@ -700,7 +700,7 @@ void menu(Joueur* tab){
                                         moy = moyenne(tabTmps, taille3);
                                         //printf("moy : %f\n", moy);
                                         tabMoy[l] = moy;
-                                        printf("tabmoy : %d\n", tabMoy[l]);
+                                        //printf("tabmoy : %d\n", tabMoy[l]);
                                         l++;
                                     }
 
@@ -720,7 +720,7 @@ void menu(Joueur* tab){
                             else{
                                 printf("aucun athl�te n'a fait d'entrainement pour cette �preuve.\n");
                             }
-                            r = 'o';
+                            r = 'n';
 
                             break;
                         case 3:
@@ -736,10 +736,7 @@ void menu(Joueur* tab){
                             taille2 = nbLigne(f);
                             Compare_Perf(tab, i, taille2);
                         }
-
-                        
-                        
-
+                        r = 'n';
                         break;
                     }
                 }
