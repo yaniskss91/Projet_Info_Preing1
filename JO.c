@@ -381,7 +381,7 @@ void menu(Joueur* tab){
     taille1 = nbAthlete(f);
     fclose(f);
     n=0;
-    char nom[20], r='O', r2, r3;
+    char nom[50], r='O', r2, r3;
     printf("Que souhaitez vous faire ?\n 1: Ajouter un entrainement\n 2: Afficher l'historique des entrainements\n 3: Consulter des statistiques de performances d'un athlète\n\n Reponse :  ");
     scanf("%d", &n);
     printf("\033[H\033[2J");
@@ -579,7 +579,7 @@ void menu(Joueur* tab){
             printf("Veuillez saisir une valeur comprise entre 1 et 3");
     }
 }
-
+}
 int main(){
     Joueur* tab = creationTab();
     menu(tab);
