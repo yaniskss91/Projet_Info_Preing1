@@ -592,7 +592,9 @@ void menu(Joueur* tab){
                                     }
                                     if(taille3 != 0){
                                         int* tabTmps = malloc(taille3 * sizeof(int));
-                                        verifTab(tabTmps);
+                                        if(tabTmps == NULL){
+                                            exit(1);
+                                        }
 
                                         tabTmps = tabTemps(tab[i].e, taille2, taille3, xepreuve);
                                         moy = moyenne(tabTmps, taille3);
@@ -610,7 +612,7 @@ void menu(Joueur* tab){
                                 }else{
                                     printf("verifier l'orthographe\n");
                                 }
-                            }r = 'o';
+                            }r = 'n';
                             break;
                         case 2:
                             xepreuve = verifDate(5, "l'epreuve", 0);
@@ -629,14 +631,16 @@ void menu(Joueur* tab){
                                 }
                                 fclose(f2);
                             }
-                            printf("taille : %d\n", taille3);
+
                             if(taille3 != 0){
+                                int k, l=0;
                                 int* tabTmps;
-                                float* tabMoy = malloc(taille3 * sizeof(float));
-                                if(tabTmps == NULL){
+                                int* tabMoy = malloc(taille3 * sizeof(int));
+                                if(tabMoy == NULL){
                                     exit(1);
                                 }
                                 for(int i=0; i<taille; i++){
+                                    taille3 = 0;
                                     sprintf(nom, "%s.txt", tab[i].nom);
                                     f2 = fopen(nom, "r");
                                     verifAllocFich(f2);
@@ -648,25 +652,35 @@ void menu(Joueur* tab){
                                     }
                                     rewind(f2);
                                     tabTmps = malloc(taille3 * sizeof(int));
-                                    int k = 0;
-                                    for(int j=0; j<taille3; j++){
+                                    if(tabTmps == NULL){
+                                        exit(12);
+                                    }
+                                    k = 0;
+                                    for(int j=0; j<taille2; j++){
                                         if(tab[i].e[j].ep == xepreuve){
-                                            tabTmps[k] = tab[i].e[j].ep;
+                                            tabTmps[k] = tab[i].e[j].temps;
+                                            //printf("%d\n", tabTmps[k]);
                                             k++;
                                         }
                                     }
-                                    moy = moyenne(tabTmps, taille3);
-                                    tabMoy[i] = moy;
+                                    printf("taille3 : %d\n", taille3);
+                                    if(taille3 >0){
+                                        moy = moyenne(tabTmps, taille3);
+                                        //printf("moy : %f\n", moy);
+                                        tabMoy[l] = moy;
+                                        printf("tabmoy : %d\n", tabMoy[l]);
+                                        l++;
+                                    }
+
                                     fclose(f2);
                                 }
 
                                 triRapide(tabMoy, taille3);
-                                printf("\033[H\033[2J");
-//printf("%s\n", tab[i].nom);
-                                //printf("meilleur temps : %d\n", tabTmps[0]);
-//printf("pire temps : %d\n", tabTmps[taille3-1]);
-                                //printf("temps moyen : %fs\n", moy);
 
+
+                                printf("meilleur temps moy : %ds\n", tabMoy[0]);
+                                printf("2e meilleur temps moy: %ds\n", tabMoy[1]);
+                                printf("3e meilleur temps moy: %ds\n\n\n\n", tabMoy[2]);
 
                                 free(tabTmps);
 
@@ -684,7 +698,9 @@ void menu(Joueur* tab){
                 }
 
                 break;
+            case 4:
 
+                break;
             default:
                 printf("Veuillez saisir une valeur comprise entre 1 et 4\n\n");
                 break;
