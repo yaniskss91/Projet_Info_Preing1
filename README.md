@@ -7,4 +7,4 @@ Nous avons beacoup travaillé ensemble mais nous nous sommes tout de même répa
 Yanis s'est occupé de la gestion et création de fichier.
 Tom s'est concentré sur la gestion de fichier et les tris.
 Zachary s'est occupé de la majorité de l'interface.
-J'espère que notre projet vous plaira (et qu'il fonctionnera ☺)
+J'espère que notre projet vous plaira (et qu'il fonctionnera ☺) !
