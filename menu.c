@@ -79,7 +79,7 @@ Joueur* creationTab(){
     if(tab==NULL){
         exit(3);
     }
-    iojhvnkshbnjdbfhdjbfhjdsgfb
+
     rewind(f);
 
     FILE* f2 = NULL;
