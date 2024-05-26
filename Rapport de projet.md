@@ -7,7 +7,7 @@ Pour ce dernier nous avons du créer une fonction pour vérifier si ce que renvo
 Aussi nous avons rencontré des prolbèmes sur la création du tableau athlète.
 Les sauts de ligne étaient un problème sur la lecture du fichier. Nous avons donc décidé de mettre toutes les informations sur une seule ligne.
 Nous avons beacoup travaillé ensemble mais nous nous sommes tout de même réparti des tâches.
-Yanis s'est occupé de la gestion et de la création des fichiers. 
+Yanis s'est occupé de la gestion et la création des fichiers. Ainsi que la progression d'un athlete. 
 L'important était d'avoir des fichiers accessible pour permettre de simplifier le code et le stockage. 
 La structure des fichiers a permis une écriture et une lisibilité  organisé et pertinante.
 Nous avons apris l'utilisation de différentes fonctions tel que la fonction strcat... Et la maitrise des tableaux dynamiques de manière approfondie.
