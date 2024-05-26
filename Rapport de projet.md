@@ -1,6 +1,6 @@
 # Projet_Info_Preing1
 Bienvenue sur notre projet d'informatique de Preing-1 !
-Il a été réalisé par Kassou Yanis, Monteiro-alves Tom, et Roussaux Zachary en classe de MI6.
+Il a été réalisé par Kassou Yanis, Monteiro Alves Tom, et Roussaux Zachary en classe de MI6.
 Nous avons choisi le sujet des jeux olympiques car il traitait de gestion de fichier et de tris. Ces sujets nous semblait vraiment utile et important et nous voulions alors nous entraîner dessus.
 Nos plus grandes difficultés auront été le réglage de certains bugs, tel que les boucles infinies.
 Pour ce dernier nous avons du créer une fonction pour vérifier si ce que renvoyais l'utilisateur était bien des chiffres et non une suite de lettre.
