@@ -10,6 +10,7 @@ Nous avons beacoup travaillé ensemble mais nous nous sommes tout de même répa
 Yanis s'est occupé de la gestion et de la création des fichiers. 
 L'important était d'avoir des fichiers accessible pour permettre de simplifier le code et le stockage. 
 La structure des fichiers a permis une écriture et une lisibilité  organisé et pertinante.
+Nous avons aprris l'utilisation de différentes fonctions tel que la fonction strcat... Et la maitrise des tableaux dynamiques de manière approfondie.
 
 Tom s'est concentré sur la gestion de fichier et les tridjhfdh
 
