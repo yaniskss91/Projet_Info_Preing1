@@ -18,5 +18,6 @@ Zachary s'est occupé de la majorité de l'interface et le menu.
 L'objectif était de faire un menu lisible et ergonomique. Il fallait qu'il soit compréhensible et facile d'utilisation.
 Cependant pour les corrections de bug nous travaillions ensemble pour trouver des solutions.
 
+Notre programme permet de rajouter un entrainement à un athlète donner, d'accéder à l'historique en fonction d'un athlète, d'une date et/ou d'une épreuve donnée. Permet aussi de d'afficher les performances d'un athlète donné (son meilleur temps, son pire temps et son temps moyen sur une épreuve donnée), d'afficher les 3 meilleurs athlètes d'une épreuve et d'afficher la progression d'un athlète entre 2 dates.
 
 J'espère que notre projet vous plaira (et qu'il fonctionnera ☺) !
