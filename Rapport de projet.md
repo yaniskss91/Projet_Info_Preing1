@@ -12,10 +12,11 @@ L'important était d'avoir des fichiers accessible pour permettre de simplifier 
 La structure des fichiers a permis une écriture et une lisibilité  organisé et pertinante.
 Nous avons apris l'utilisation de différentes fonctions tel que la fonction strcat... Et la maitrise des tableaux dynamiques de manière approfondie.
 
-Tom s'est concentré sur la gestion de fichier et les tris. Les tris était très utile pour le troisième choix de notre menu principal, notamment pour afficher les 3 meilleur personnes d'une épreuve ou le meilleur temps fait d'une épreuve. La gestion des fichiers était très importante car elle constituer la majorité de nos données, grâce à cela nous avons réussi à stocker toutes les valeurs des fichiers dans un tableau de structure Joueur où chaque case du tableau représente un athlète, Tom a penser aux petites fonction qui ont permis de réduire le nombre de ligne du programme
-.
+Tom s'est concentré sur la gestion de fichier et les tris. Les tris était très utile pour le troisième choix de notre menu principal, notamment pour afficher les 3 meilleures personnes d'une épreuve ou le meilleur temps fait dans une épreuve. La gestion des fichiers était très importante car elle constituait la majorité de nos données, grâce à cela nous avons réussi à stocker toutes les valeurs des fichiers dans un tableau de structure Joueur où chaque case du tableau représente un athlète. Tom a pensé aux petites fonctions qui ont permis de réduire le nombre de ligne du programme.
 
 Zachary s'est occupé de la majorité de l'interface et le menu.
 L'objectif était de faire un menu lisible et ergonomique. Il fallait qu'il soit compréhensible et facile d'utilisation.
 Cependant pour les corrections de bug nous travaillions ensemble pour trouver des solutions.
+
+
 J'espère que notre projet vous plaira (et qu'il fonctionnera ☺) !
