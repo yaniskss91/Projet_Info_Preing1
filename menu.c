@@ -1,5 +1,5 @@
 #include "passerellejo.h"
-
+//Creation Allocation er Verication
 char* creaAllocNom(int taille){
     char* nom = NULL;
     nom = malloc(sizeof(char) *taille);
@@ -8,20 +8,20 @@ char* creaAllocNom(int taille){
     }
     return nom;
 }
-
+// Verification creation tableau
 void verifTab(Entrainement* tab){
     if(tab == NULL){
         exit(3);
     }
 }
-
+// Verification creation tableau
 void verifAllocFich(FILE* f){
     if(f == NULL){
         exit(2);
     }
 }
 
-
+// Calcul dans le fichier athelte le nombre d'athlete
 int nbAthlete(FILE* f){
     int taille=1;
     char caractere;
@@ -32,7 +32,7 @@ int nbAthlete(FILE* f){
     }
     return taille;
 }
-
+// Calcul du nombre de ligne par fichier
 int nbLigne(FILE* f){
     int nbr_ligne=1;
     char caractere;
@@ -43,7 +43,7 @@ int nbLigne(FILE* f){
     }
     return nbr_ligne;
 }
-
+// Creation et remplissage d'un tableau entrainement pour un athlete
 Entrainement* creationTabE(FILE* f, int taille){
     Entrainement* tab = NULL;
     tab = malloc(sizeof(Entrainement)*taille);
@@ -62,7 +62,7 @@ Entrainement* creationTabE(FILE* f, int taille){
 
     return tab;
 }
-
+// creation du tableau principale entrainement
 Joueur* creationTab(){
     char* nom = creaAllocNom(50);
     char* nom2 = creaAllocNom(5);
@@ -101,10 +101,9 @@ Joueur* creationTab(){
     }
 
     fclose(f);
-    printf("prosfgx\n");
     return tab;
 }
-
+//Verification si str est composé de chiffres et non de lettres
 int verifNb(const char *str){
      for (int i = 0; str[i] != '\0'; i++) {
         if (str[i] < '0' || str[i] > '9') {
@@ -114,7 +113,7 @@ int verifNb(const char *str){
     return 1;
 
 }
-
+// Securistation du scanf pour eviter des boucles infini
 int securscanf(char* test){
     int x;
     if (test !=NULL){
@@ -134,11 +133,11 @@ int securscanf(char* test){
         return 0;
     }
 }
-
+// Verification des dates de l'utilisateur
 int verifDate(int max, char* nom, int val){
     char* test = creaAllocNom(100);
     while((val<1)|| (val>max)){
-        printf("Quelle est %s de l'entra�nement ?\n", nom);
+        printf("Quelle est %s de l'entrainement ?\n", nom);
 
         if(nom == "l'epreuve"){
             printf("1: 100m\n 2: 400m\n 3: 5000m\n 4: Marathon\n 5: Relais\n");
@@ -155,7 +154,7 @@ int verifDate(int max, char* nom, int val){
     }
     return val;
 }
-
+// Ajout d'entrainement 
 void ajoutEntrainement(FILE* f, Entrainement* tab, int taille){
     Entrainement nouv;
     char* test = creaAllocNom(100);
@@ -196,7 +195,7 @@ void ajoutEntrainement(FILE* f, Entrainement* tab, int taille){
         fprintf(f, " %d", nouv.position);
     }
 }
-
+//verification si le nom est composé de lettres
 char verif_r(char nom[50], char r){
     while((r!='o') &&(r!='n')){
         printf("%s", nom);
@@ -205,14 +204,15 @@ char verif_r(char nom[50], char r){
     }
     return r;
 }
+//Fonction pour les filtres.Verification la validation du choix de filtres
 int verif1(char* nom){
     char* r = creaAllocNom(20);
-    printf("Souhaitez vous activer le filtre <<%s>> ? (o/n)\n\nR�ponse :", nom);
+    printf("Souhaitez vous activer le filtre <<%s>> ? (o/n)\n\nRéponse :", nom);
     scanf(" %s", r);
     printf("\033[H\033[2J");
 
     while(((r[0]!='o') && (r[1]!='\0'))||(r[0]!='n') && (r[1]!='\0')){
-        printf("Souhaitez vous activer le filtre <<%s>> ? (o/n)\n\nR�ponse :", nom);
+        printf("Souhaitez vous activer le filtre <<%s>> ? (o/n)\n\nRéponse :", nom);
         scanf(" %s", r);
         printf("\033[H\033[2J");
     }
@@ -222,17 +222,18 @@ int verif1(char* nom){
         return 0;
     }
 }
+// Verification si le filtre a bien été enlever ou pas
 int verif2(char* nom, int val){
     if(val==0){
         printf("Saisissez une valeur correcte !\n");
     }
     else{
-        printf("Le filtre %s a bien �t� enlev�\n", nom);
+        printf("Le filtre %s a bien été enlever\n", nom);
 
     }
     return 0;
 }
-
+// Verification de l'orthographe du nom
 int verifNom(int taille, char* nom, Joueur* tab){
     for(int i=0; i<taille; i++){
         if(strcmp(tab[i].nom, nom)==0){
@@ -244,7 +245,7 @@ int verifNom(int taille, char* nom, Joueur* tab){
         }
     }
 }
-
+// Consultation de l'historique d'un athelte 
 void historique(Joueur * tab, int taille, int val1, int val2, int val3){
     int taille2, i, v = 0;
     char* nom = creaAllocNom(50);
@@ -320,7 +321,7 @@ void historique(Joueur * tab, int taille, int val1, int val2, int val3){
                 }
                 v = 1;
             }else{
-                printf("V�rifier l'arthographe\n\n");
+                printf("Vérifier l'arthographe\n\n");
                 v = 0;
             }
             printf("\n");
@@ -384,7 +385,7 @@ void historique(Joueur * tab, int taille, int val1, int val2, int val3){
             printf("\n");
         }
     }else{
-        printf("vous revenez en arri�re\n\n");
+        printf("vous revenez en arriere\n\n");
     }
 }
 
@@ -393,7 +394,7 @@ int* tabTemps(Entrainement* tab, int taille, int taille2, int ep){
     int k = 0;
     int* tabTmps = malloc(taille2 * sizeof(int));
     if (tabTmps == NULL) {
-        printf("Erreur d'allocation de m�moire\n");
+        printf("Erreur d'allocation de mémoire\n");
         exit(1);
     }
     for(int i=0; i<taille; i++){
@@ -405,7 +406,7 @@ int* tabTemps(Entrainement* tab, int taille, int taille2, int ep){
     return tabTmps;
 }
 
-
+//Calcul de moyenne entre deux temps
 float moyenne(int* tab, int taille){
     float som = 0;
     for(int i=0;i<taille; i++){
@@ -415,7 +416,7 @@ float moyenne(int* tab, int taille){
     return moy;
 }
 
-
+// CALCULER LE PIVOT
 int partition(int* A, int debut, int fin) {
     int inf, sup, tmp;
     inf = debut + 1;
@@ -441,7 +442,7 @@ int partition(int* A, int debut, int fin) {
     return sup;
 }
 
-
+//TRIER LE TABLEAU A DANS L'ORDRE CROISSANT
 void triRapideRec(int* A, int debut, int fin){
     int pivot;
     if(debut < fin){
@@ -451,11 +452,11 @@ void triRapideRec(int* A, int debut, int fin){
     }
 }
 
-
+// INITIALISER LES PARAMETRES DE LA FONCTION QUI TRIE LE TABLEAU DANS L'ORDRE CROISSANT
 void triRapide(int* A, int n){
     triRapideRec(A, 0, n-1);
 }
-
+//Comparateur de performance entre deux dates
 void Compare_Perf(Joueur *tab,int i, int taille){
     Date d1,d2;
     int epreuve,tps1=0,tps2=0,diff_tmps;
@@ -465,7 +466,7 @@ void Compare_Perf(Joueur *tab,int i, int taille){
     d2.jour=verifDate(31, "jour", 0);
     d2.mois=verifDate(12, "mois", 0);
     for(int j=0;j<taille;j++){
-        if( (tab[i].e[j].ep==epreuve )&&(tab[i].e[j].date.jour==d1.jour) && (tab[i].e[j].date.mois==d1.mois)){
+        if( (tab[i].e[j].ep==epreuve )&&(tab[i].e[j].date.jour==d1.jour) && (tab[i].e[j].date.mois==d1.mois)){ // SI L'EPREUVE ET LES DATES SAISIES CORRESPONDENTS AU FICHIERS
             tps1=tab[i].e[j].temps;
             j=taille;
         }
@@ -499,7 +500,7 @@ void Compare_Perf(Joueur *tab,int i, int taille){
 
 
 
-
+// Le menu principale, utilisation de switch pour naviguer dans le menu
 void menu(Joueur* tab){
     printf("\033[H\033[2J");
     int n=0, taille, taille2, v = 0, x, xathlete = 0, xepreuve=0, xdate=0;
@@ -507,13 +508,13 @@ void menu(Joueur* tab){
     float moy;
     char *test = creaAllocNom(100);
 
-    FILE* f = fopen("athlete.txt", "r");
+    FILE* f = fopen("athlete.txt", "r"); // Ouverture fichiers athlete qui contient le nom des athletes
     verifAllocFich(f);
     FILE* f2 = NULL;
     taille = nbAthlete(f);
     fclose(f);
 
-    char* nom = creaAllocNom(50);// marche peut pas pour sprintf ligne 48
+    char* nom = creaAllocNom(50);//Allcation dynamique pour les noms
     char r='O', r2='o';
 
     while(n!=4){
@@ -523,15 +524,15 @@ void menu(Joueur* tab){
         printf("\033[H\033[2J");
         n = securscanf(test);
 
-        switch(n){
+        switch(n){  // switch pour les différents choix possibles proposer
             case 1:
                 v=0;
-                while(v == 0){
+                while(v == 0){          // boucle de validation pour si il y a des erreures relancer cette boucle
                     printf("Pour quel athlete ?\n\nReponse : ");
                     scanf("%s", nom);
                     printf("\033[H\033[2J");
 
-                    for(int i=0; i<taille; i++){
+                    for(int i=0; i<taille; i++){        // Parcourir le fichier athlete
                         if(strcmp(tab[i].nom, nom)==0){
                             sprintf(nom,"%s.txt",nom);
 
@@ -544,7 +545,7 @@ void menu(Joueur* tab){
 
                             i = taille;
                             v = 1;
-                        }else if(i==taille-1){
+                        }else if(i==taille-1){              // message d'erreure
                             printf("verifier l'orthographe(n'oublier pas la majuscule)\n");
                             v = 0;
                         }
@@ -556,16 +557,16 @@ void menu(Joueur* tab){
             case 2:
                 r='O';
                 r2='o';
-                while((r=='O') || (r=='o')){
+                while((r=='O') || (r=='o')){                // boucle de validation pour si il y a des erreures relancer cette boucle
                     x=0;
-                    while((x<1) || (x>4 )){
-                        printf("Quel filtre voulez-vous mettre ?\n1: Athl�te\n2: Date\n3: Epreuve\n4: retour\n\nR�ponse : ");
+                    while((x<1) || (x>4 )){                 // boucle de validation pour x
+                        printf("Quel filtre voulez-vous mettre ?\n1: Athlète\n2: Date\n3: Epreuve\n4: retour\n\nRéponse : ");
                         scanf("%s", test);
                         printf("\033[H\033[2J");
                         x = securscanf(test);
                     }
 
-                    switch (x){
+                    switch (x){                             // switch pour les différents choix possible proposer
                         case 1:
                             xathlete = verif1("athlete");
                             break;
@@ -575,7 +576,7 @@ void menu(Joueur* tab){
                         case 3:
                             xepreuve = verif1("epreuve");
                             break;
-                        case 4:
+                        case 4:                         // condition pour passer le case sans passer par les étape intermédiaire du case
                             xathlete = 0;
                             xepreuve  = 0;
                             xdate = 0;
@@ -583,7 +584,7 @@ void menu(Joueur* tab){
                             r2 = 'n';
                             break;
                     }
-                    if(x != 4){
+                    if(x != 4){             // condition pour rester dans le case 
                         printf("Souhaitez-vous mettre un autre filtre ? (o/n)\n\nReponse :");
                         scanf(" %c", &r);
                         r = verif_r("Souhaitez-vous mettre un autre filtre ? (o/n)\n\nReponse :", r);
@@ -591,8 +592,8 @@ void menu(Joueur* tab){
                     }
 
                 }
-                if(x != 4){
-                    printf("Voici les filtres activ�s : \n");
+                if(x != 4){                 // condition pour rester dans le case 
+                    printf("Voici les filtres activés : \n");
                     if(xathlete==1){
                         printf("Athlete\n");
                     }
@@ -603,14 +604,14 @@ void menu(Joueur* tab){
                         printf("Epreuve\n");
                     }
 
-                    printf("Souhaitez-vous desactiver un filtre ? (o/n)\n\nR�ponse : ");
+                    printf("Souhaitez-vous desactiver un filtre ? (o/n)\n\nRéponse : ");
                     scanf(" %c", &r2);
                     r2 = verif_r("Souhaitez-vous mettre un autre filtre ? (o/n)\n\nReponse :", r2);
                     printf("\033[H\033[2J");
                 }
-                while((r2=='o') || (r2=='O')){
+                while((r2=='o') || (r2=='O')){                  // validation 2
                     x=0;
-                    printf("Quel filtre souhaitez-vous d�sactiver ?\n");
+                    printf("Quel filtre souhaitez-vous désactiver ?\n");
                     if (xathlete==1){
                         printf("1: Athlete\n");
                     }
@@ -640,7 +641,7 @@ void menu(Joueur* tab){
                             break;
 
                         case 4 :
-                            printf("Aucun filtre n'a �t� enlev�\n");
+                            printf("Aucun filtre n'a été enlever\n");
                             r2 = n;
                             break;
 
@@ -665,10 +666,10 @@ void menu(Joueur* tab){
 
             case 3:
                 r='O';
-                while((r=='O') || (r=='o')){
+                while((r=='O') || (r=='o')){                // boucle de validation pour si il y a des erreures relancer cette boucle
                      x=0;
-                    while((x<1) || (x>3)){
-                        printf("Que voulez savoir ?\n1: R�sumer d'un athl�te\n2: Qui envoier au JO\n3: La progression d'un atl�te\n\nR�ponse : ");
+                    while((x<1) || (x>3)){                  // boucle de validation pour x
+                        printf("Que voulez savoir ?\n1: Résumer d'un athlète\n2: Qui envoier au JO\n3: La progression d'un athlète\n\nRéponse : ");
                         scanf("%s", test);
                         printf("\033[H\033[2J");
                         x = securscanf(test);
@@ -676,8 +677,8 @@ void menu(Joueur* tab){
 
                     switch (x){
                         case 1:
-                             while(r2=='o'){
-                                printf("Quel athl�te ?\n\nReponse: ");
+                             while(r2=='o'){                    // boucle de validation pour si il y a des erreures relancer cette boucle
+                                printf("Quel athléte ?\n\nReponse: ");
                                 scanf(" %s", nom);
                                 printf("\033[H\033[2J");
                                 int i = verifNom(taille, nom, tab);
@@ -689,19 +690,14 @@ void menu(Joueur* tab){
 
                                     taille2 = nbLigne(f2);
                                     xepreuve = verifDate(5, "l'epreuve", 0);
-                                    /*while((xepreuve<1)||(xepreuve>5)){
-                                        printf("Quelle �preuve ?\n1: 100m\n 2: 400m\n 3: 5000m\n 4: Marathon\n 5: Relais\n\nReponse: ");
-                                        scanf("%d", &xepreuve);
-                                        printf("\033[H\033[2J");
-                                    }*/
                                     int taille3 = 0;
-                                    for(int j=0; j<taille2; j++){
+                                    for(int j=0; j<taille2; j++){               // calculer le nombre d'entrainement qu'a l'athlete
                                         if(tab[i].e[j].ep == xepreuve){
                                             taille3++;
                                         }
                                     }
                                     if(taille3 != 0){
-                                        int* tabTmps = malloc(taille3 * sizeof(int));
+                                        int* tabTmps = malloc(taille3 * sizeof(int));               // initialisation d un tableau int
                                         if(tabTmps == NULL){
                                             exit(1);
                                         }
@@ -716,7 +712,7 @@ void menu(Joueur* tab){
                                         printf("temps moyen : %fs\n", moy);
 
                                     }else{
-                                        printf("l'athl�te n'a pas fait d'entrainement pour cette �preuve.\n");
+                                        printf("l'athlète n'a pas fait d'entrainement pour cette épreuve.\n");
                                     }
                                     r2 = 'n';
                                 }else{
@@ -742,7 +738,6 @@ void menu(Joueur* tab){
                                 fclose(f2);
                             }
 
-                            printf("nb athlete ds epreuve : %d\n", taille3);
                             if(taille3 != 0){
                                 int k, l=0;
                                 int* tabTmps;
@@ -826,7 +821,7 @@ void menu(Joueur* tab){
 
                             }
                             else{
-                                printf("aucun athl�te n'a fait d'entrainement pour cette �preuve.\n");
+                                printf("aucun athlète n'a fait d'entrainement pour cette épreuve.\n");
                             }
                             r = 'n';
 
@@ -852,7 +847,7 @@ void menu(Joueur* tab){
                 }
                 break;
             default:
-                printf("Valeur non comprise entre 1 et 4, Arret du programme\n\n");
+                printf("Valeur non comprise entre 1 et 4\n\n");
                 break;
         }
     }
