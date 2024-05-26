@@ -79,13 +79,11 @@ Joueur* creationTab(){
     if(tab==NULL){
         exit(3);
     }
-
+    iojhvnkshbnjdbfhdjbfhjdsgfb
     rewind(f);
 
     FILE* f2 = NULL;
-    printf("prosfgx\n");
     for(int i=0; i<taille; i++){
-        printf("prosfgx\n");
         tab[i].nom = creaAllocNom(50);
 
         fscanf(f, "%s",tab[i].nom);
