@@ -10,9 +10,10 @@ Nous avons beacoup travaillé ensemble mais nous nous sommes tout de même répa
 Yanis s'est occupé de la gestion et de la création des fichiers. 
 L'important était d'avoir des fichiers accessible pour permettre de simplifier le code et le stockage. 
 La structure des fichiers a permis une écriture et une lisibilité  organisé et pertinante.
-Nous avons aprris l'utilisation de différentes fonctions tel que la fonction strcat... Et la maitrise des tableaux dynamiques de manière approfondie.
+Nous avons apris l'utilisation de différentes fonctions tel que la fonction strcat... Et la maitrise des tableaux dynamiques de manière approfondie.
 
-Tom s'est concentré sur la gestion de fichier et les tridjhfdh
+Tom s'est concentré sur la gestion de fichier et les tris. Les tris était très utile pour le troisième choix de notre menu principal, notamment pour afficher les 3 meilleur personnes d'une épreuve ou le meilleur temps fait d'une épreuve. La gestion des fichiers était très importante car elle constituer la majorité de nos données, grâce à cela nous avons réussi à stocker toutes les valeurs des fichiers dans un tableau de structure Joueur où chaque case du tableau représente un athlète, Tom a penser aux petites fonction qui ont permis de réduire le nombre de ligne du programme
+.
 
 Zachary s'est occupé de la majorité de l'interface et le menu.
 L'objectif était de faire un menu lisible et ergonomique. Il fallait qu'il soit compréhensible et facile d'utilisation.
